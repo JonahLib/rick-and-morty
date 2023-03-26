@@ -1,0 +1,1 @@
+export const  title = 'Rick and Morty wikipedia'
