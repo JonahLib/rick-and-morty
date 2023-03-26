@@ -2,7 +2,6 @@ import { useState, useEffect } from "react"
 import { CharCard } from "@/components/char_card"
 import { Header } from "@/components/header"
 import Head from "next/head"
-import Link from "next/link"
 import styles from "./styles.module.css"
 
 
@@ -66,7 +65,23 @@ export default function Home(data) {
     })
   }
 
-  const renderCharactors = results.map(result => <CharCard props ={result}/>)
+
+  const handleOnSubmitSearch = (e) => {
+    e.preventDefault()
+
+    const {currentTarget = []} = e
+    const fields =  Array.from(currentTarget?.elements)
+    const filedQuery = fields.find(field => field.name === 'query')
+
+    const value  = filedQuery.value || ''
+    const endpoint = `https://rickandmortyapi.com/api/character/?name=${value}`
+
+    setPage({
+      current: endpoint
+    })
+  }
+
+  const renderCharactors = results?.map(result => <CharCard props ={result}/>)
   return (
     <div>
       <Head>
@@ -75,6 +90,10 @@ export default function Home(data) {
      
         <main className={styles.page}>
           <Header/>
+          <form className={styles.searchContainer} onSubmit={handleOnSubmitSearch}>
+            <input className={styles.searchInput} name="query" type="search"/>
+            <button className={styles.searchButton} >Search</button>
+          </form>
           <ul className={styles.charactorList}>
             {renderCharactors}
           </ul>
