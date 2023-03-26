@@ -1,0 +1,12 @@
+.charactorList{
+    list-style: none;
+    padding-top: 20px;
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+}
+
+.page{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}

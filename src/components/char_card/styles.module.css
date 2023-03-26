@@ -1,0 +1,8 @@
+.container{
+    max-width: 300px;
+    max-height: 400px;
+    border: 2px solid black;
+    text-align: center;
+    background-color: wheat;
+    padding: 20px;
+}
